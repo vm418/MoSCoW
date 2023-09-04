@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoSCoW Prioritization Template</title>
+    <title>Modern MoSCoW Prioritization Template</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,6 +17,7 @@
             color: #fff;
             text-align: center;
             padding: 20px;
+            border-radius: 5px 5px 0 0;
         }
 
         .container {
@@ -29,7 +30,7 @@
             flex: 1;
             padding: 20px;
             background-color: #fff;
-            border-radius: 5px;
+            border-radius: 0 0 5px 5px;
             margin: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
@@ -55,6 +56,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: background-color 0.3s;
         }
 
         .task-item:hover {
@@ -63,11 +65,18 @@
 
         .task-text {
             flex: 1;
+            color: #333;
         }
 
         .remove-task {
             color: #e74c3c;
             cursor: pointer;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .remove-task:hover {
+            color: #c0392b;
         }
 
         .add-task {
@@ -103,7 +112,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>MoSCoW Prioritization Template</h1>
+        <h1>Modern MoSCoW Prioritization Template</h1>
     </div>
     <div class="container">
         <div class="column" style="background-color: #3498db;">
@@ -155,25 +164,5 @@
             const taskItem = document.createElement("li");
             taskItem.className = "task-item";
 
-            const taskTextElement = document.createElement("div");
-            taskTextElement.className = "task-text";
-            taskTextElement.textContent = taskText;
-            taskItem.appendChild(taskTextElement);
+            const taskText
 
-            // Add a remove button to each task item
-            const removeButton = document.createElement("span");
-            removeButton.className = "remove-task";
-            removeButton.textContent = "Remove";
-            removeButton.onclick = function () {
-                taskList.removeChild(taskItem);
-            };
-
-            taskItem.appendChild(removeButton);
-            taskList.appendChild(taskItem);
-
-            // Clear the input field
-            document.getElementById(`new-${category}-task`).value = "";
-        }
-    </script>
-</body>
-</html>
