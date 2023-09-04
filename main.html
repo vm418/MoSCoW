@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoSCoW Prioritization Template</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .column {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            margin: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .column-header {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .task-item {
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-item:hover {
+            background-color: #e0e0e0;
+        }
+
+        .task-text {
+            flex: 1;
+        }
+
+        .remove-task {
+            color: #e74c3c;
+            cursor: pointer;
+        }
+
+        .add-task {
+            background-color: #27ae60;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #fff;
+            color: #27ae60;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>MoSCoW Prioritization Template</h1>
+    </div>
+    <div class="container">
+        <div class="column" style="background-color: #3498db;">
+            <div class="column-header">Must-Have (M)</div>
+            <ul class="task-list" id="must-have">
+            </ul>
+            <div class="add-task">
+                <input type="text" id="new-must-have-task" placeholder="Add a new task">
+                <button onclick="addTask('must-have')">Add</button>
+            </div>
+        </div>
+        <div class="column" style="background-color: #e67e22;">
+            <div class="column-header">Should-Have (S)</div>
+            <ul class="task-list" id="should-have">
+            </ul>
+            <div class="add-task">
+                <input type="text" id="new-should-have-task" placeholder="Add a new task">
+                <button onclick="addTask('should-have')">Add</button>
+            </div>
+        </div>
+        <div class="column" style="background-color: #9b59b6;">
+            <div class="column-header">Could-Have (C)</div>
+            <ul class="task-list" id="could-have">
+            </ul>
+            <div class="add-task">
+                <input type="text" id="new-could-have-task" placeholder="Add a new task">
+                <button onclick="addTask('could-have')">Add</button>
+            </div>
+        </div>
+        <div class="column" style="background-color: #27ae60;">
+            <div class="column-header">Won't-Have (W)</div>
+            <ul class="task-list" id="wont-have">
+            </ul>
+            <div class="add-task">
+                <input type="text" id="new-wont-have-task" placeholder="Add a new task">
+                <button onclick="addTask('wont-have')">Add</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addTask(category) {
+            const taskText = document.getElementById(`new-${category}-task`).value;
+            if (taskText.trim() === "") {
+                return;
+            }
+
+            const taskList = document.getElementById(category);
+            const taskItem = document.createElement("li");
+            taskItem.className = "task-item";
+
+            const taskTextElement = document.createElement("div");
+            taskTextElement.className = "task-text";
+            taskTextElement.textContent = taskText;
+            taskItem.appendChild(taskTextElement);
+
+            // Add a remove button to each task item
+            const removeButton = document.createElement("span");
+            removeButton.className = "remove-task";
+            removeButton.textContent = "Remove";
+            removeButton.onclick = function () {
+                taskList.removeChild(taskItem);
+            };
+
+            taskItem.appendChild(removeButton);
+            taskList.appendChild(taskItem);
+
+            // Clear the input field
+            document.getElementById(`new-${category}-task`).value = "";
+        }
+    </script>
+</body>
+</html>
